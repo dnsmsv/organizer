@@ -7,6 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./selector.component.scss']
 })
 export class SelectorComponent {
+  dateService: DateService;
 
-  constructor(private dateService: DateService) { }
+  constructor(dateService: DateService) {
+    this.dateService = dateService;
+  }
+
+  go(dir: number): void {
+    this.dateService.changeMonth(dir);
+  }
 }

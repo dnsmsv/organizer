@@ -48,8 +48,6 @@ export class CalendarComponent implements OnInit {
       });
     }
 
-    console.log(calendar);
-    
     this.calendar = calendar;
   }
 

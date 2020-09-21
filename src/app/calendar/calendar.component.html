@@ -16,11 +16,10 @@
             <td 
                 *ngFor="let day of week.days"
                 [class.disabled]="day.disabled"
+                [class.selected]="day.selected"
+                [class.active]="day.active"
                 (click)="select(day.value)">
-                <span 
-                    [class.selected]="day.selected"
-                    [class.active]="day.active"
-                >{{ day.value | moment: 'ddd DD' }}</span>
+                <span>{{ day.value | moment: 'ddd DD' }}</span>
             </td>
         </tr>
     </tbody>

@@ -13,6 +13,8 @@ table {
         text-align: center;
         vertical-align: top;
         transition: all .2s;
+        padding: 0 0.3rem;
+        width: 15%;
 
         &.disabled {
             opacity: .5;
@@ -28,9 +30,30 @@ table {
             background: rgba(33, 33, 255, 0.185);
         }
 
-        &:hover:not(.disabled) {
+        &:hover:not(.disabled):not(.selected) {
             background: #eeeeee;
             cursor: pointer;
+        }
+
+        .task {
+            margin: 0.2rem 0;
+            padding: 0 0.1rem;
+            text-align: left;
+            font-size: 0.8rem;
+            color: black;
+            background-color: rgba(144, 238, 144, 0.404);
+            border-left: green;
+            border-left-style: solid;
+        }
+
+        .ellipsis {
+            margin: -0.7rem 0 0 0;
+            padding: 0;
+            visibility: hidden;
+
+            &.visible {
+                visibility: visible;
+            }
         }
     }
 }

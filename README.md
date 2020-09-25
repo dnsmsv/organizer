@@ -1,28 +1,28 @@
 # Organizer
 
-Organizer written on Angular and RxJS.
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
+Simple organizer created with Node.js, Angular and RxJS. Server for store and manage data is Firebase or server on ASP.NET Core (Database - SQL Server).
 
-## Development server
+## Introdaction
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:5001/`. The app will automatically reload if you change any of the source files.
+It's a training project. Created to learn new technologies and memorize the material from online course.
 
-## Code scaffolding
+## Technologies
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* Node.js 14.9
+* Angular 10.1
+* RxJS 6.6
 
-## Build
+## Launch
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+https://dnsmsv.github.io/organizer/
 
-## Running unit tests
+## Features
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* Add/Remove task to/from specific date;
+* View all tasks on bottom panel;
+* Pre-view the first two tasks on cell in calendar.
 
-## Running end-to-end tests
+### ToDo:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* Enable/disable task notification by e-mail;
+* User authorization.

@@ -55,8 +55,8 @@ export class MomentMap<T1, T2> extends Map {
 
 @Injectable({providedIn: 'root'})
 export class TasksService {
-    public static url = 'https://localhost:5001/Organizer';
-    // public static url = 'https://organizer-1a984.firebaseio.com/tasks';
+    // public static url = 'https://localhost:5001/Organizer';
+    public static url = 'https://organizer-1a984.firebaseio.com/tasks';
     public tasks: BehaviorSubject<MomentMap<moment.Moment, Task[]>> =
         new BehaviorSubject(new MomentMap<moment.Moment, Task[]>());
 

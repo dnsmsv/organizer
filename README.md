@@ -2,7 +2,7 @@
 
 Simple organizer created with Node.js, Angular and RxJS. Server for store and manage data is Firebase or server on ASP.NET Core (Database - SQL Server).
 
-## Introdaction
+## Introduction
 
 It's a training project. Created to learn new technologies and memorize the material from online course.
 

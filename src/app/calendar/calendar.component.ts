@@ -1,47 +1,10 @@
-import { MomentMap, Task } from './../shared/tasks.service';
+import { Task } from './../shared/tasks.service';
 import { DateService } from './../shared/date.service';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { TasksService } from '../shared/tasks.service';
-
-class Day {
-  value: moment.Moment;
-  active: boolean;
-  disabled: boolean;
-  selected: boolean;
-  // tslint:disable-next-line:variable-name
-  private _task1: string;
-  // tslint:disable-next-line:variable-name
-  private _task2: string;
-  showEllipsis: boolean;
-
-  constructor(value: moment.Moment, active: boolean, disabled: boolean, selected: boolean) {
-    this.value = value;
-    this.active = active;
-    this.disabled = disabled;
-    this.selected = selected;
-  }
-
-  get task1(): string {
-    return this._task1;
-  }
-
-  set task1(title: string) {
-    this._task1 = title.length > 10
-      ? `${title.substr(0, 10)}...`
-      : title;
-  }
-
-  get task2(): string {
-    return this._task2;
-  }
-
-  set task2(title: string) {
-    this._task2 = title.length > 10
-      ? `${title.substr(0, 10)}...`
-      : title;
-  }
-}
+import { MomentMap } from 'src/models/moment-map.model';
+import { Day } from 'src/models/day.model';
 
 interface Week {
   days: Day[];
@@ -50,13 +13,16 @@ interface Week {
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss']
+  styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent implements OnInit {
   calendar: Week[];
   oldSelectedDay: Day;
 
-  constructor(private dateService: DateService, private taskService: TasksService) {}
+  constructor(
+    private dateService: DateService,
+    private taskService: TasksService
+  ) {}
 
   ngOnInit(): void {
     this.dateService.date.subscribe(this.generate.bind(this));
@@ -66,8 +32,7 @@ export class CalendarComponent implements OnInit {
   private getDay(m: moment.Moment): Day {
     if (this.calendar) {
       for (const week of this.calendar) {
-        const day = week.days.find(d =>
-          d.value.isSame(m, 'date'));
+        const day = week.days.find((d) => d.value.isSame(m, 'date'));
 
         if (day) {
           return day;
@@ -99,8 +64,7 @@ export class CalendarComponent implements OnInit {
     if (today) {
       this.oldSelectedDay.selected = false;
       today.selected = true;
-    }
-    else {
+    } else {
       this.calendar = [];
       const startDay = now.clone().startOf('month').startOf('week');
       const endDay = now.clone().endOf('month').endOf('week');
@@ -110,14 +74,16 @@ export class CalendarComponent implements OnInit {
 
       while (date.isBefore(endDay, 'day')) {
         calendar.push({
-          days: Array(7).fill(0).map(() => {
-            const value = date.add(1, 'day').clone();
-            this.taskService.load(value);
-            const active = moment().isSame(value, 'date');
-            const disabled = !now.isSame(value, 'month');
-            const selected = now.isSame(value, 'date');
-            return new Day(value, active, disabled, selected);
-          })
+          days: Array(7)
+            .fill(0)
+            .map(() => {
+              const value = date.add(1, 'day').clone();
+              this.taskService.load(value);
+              const active = moment().isSame(value, 'date');
+              const disabled = !now.isSame(value, 'month');
+              const selected = now.isSame(value, 'date');
+              return new Day(value, active, disabled, selected);
+            }),
         });
       }
 

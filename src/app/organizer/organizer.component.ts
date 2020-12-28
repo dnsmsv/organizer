@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-organizer',
   templateUrl: './organizer.component.html',
-  styleUrls: ['./organizer.component.scss']
+  styleUrls: ['./organizer.component.scss'],
 })
 export class OrganizerComponent implements OnInit, OnDestroy {
   dateService: DateService;
@@ -24,18 +24,17 @@ export class OrganizerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      title: new FormControl('', Validators.required)
+      title: new FormControl('', Validators.required),
     });
-    this.taskService.tasks.subscribe(map => {
+    this.taskService.tasks.subscribe((map) => {
       if (map.has(this.dateService.date.value)) {
         this.tasks = map.get(this.dateService.date.value);
         this.form.reset();
-      }
-      else {
+      } else {
         this.tasks = [];
       }
     });
-    this.subscription = this.dateService.date.subscribe(d => {
+    this.subscription = this.dateService.date.subscribe((d) => {
       this.taskService.load(d);
     });
   }
@@ -45,10 +44,10 @@ export class OrganizerComponent implements OnInit, OnDestroy {
   }
 
   submit(): void {
-    const {title} = this.form.value;
+    const { title } = this.form.value;
     const task: Task = {
       title,
-      date: this.dateService.date.value.format('DD-MM-YYYY')
+      date: this.dateService.date.value.format('DD-MM-YYYY'),
     };
 
     this.taskService.create(this.dateService.date.value, task);

@@ -41,6 +41,7 @@ export class OrganizerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.taskService.tasks.unsubscribe();
   }
 
   submit(): void {

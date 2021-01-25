@@ -1,6 +1,6 @@
 import { Task } from './../shared/tasks.service';
 import { DateService } from './../shared/date.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as moment from 'moment';
 import { TasksService } from '../shared/tasks.service';
 import { MomentMap } from 'src/models/moment-map.model';
@@ -15,7 +15,7 @@ interface Week {
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent implements OnInit, OnDestroy {
   calendar: Week[];
   oldSelectedDay: Day;
 
@@ -27,6 +27,11 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     this.dateService.date.subscribe(this.generate.bind(this));
     this.taskService.tasks.subscribe(this.setTasks.bind(this));
+  }
+
+  ngOnDestroy(): void {
+    this.dateService.date.unsubscribe();
+    this.taskService.tasks.unsubscribe();
   }
 
   private getDay(m: moment.Moment): Day {
